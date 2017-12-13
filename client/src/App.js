@@ -7,6 +7,7 @@ import $ from 'jquery'
 
 import Home from './Home'
 import CreateHeroContainer from './Heroes/CreateHeroContainer'
+import HeroContainer from './Heroes/HeroContainer'
 import CreateVillainContainer from './Villains/CreateVillainContainer'
 import Heroes from './Heroes/Heroes'
 import Villains from './Villains/Villains'
@@ -24,7 +25,8 @@ const styles = {
 class App extends Component {
   state = {
     heroes: undefined,
-    villains: undefined
+    villains: undefined,
+    hero: undefined
   }
 
   componentDidMount () {
@@ -93,7 +95,7 @@ class App extends Component {
       alert(`${villain.name}, Nemesis: ${villain.nemesis}`)
     })
   }
-  
+
   render () {
     return (
       <Router>
@@ -105,9 +107,10 @@ class App extends Component {
           <Route path='/create-villain' render={() => <CreateVillainContainer />} />
           {
             this.state.heroes
-              ? <Route path='/heroes' render={() => <Heroes showUniqueHero={this.showUniqueHero} deleteHero={this.deleteHero} heroes={this.state.heroes} />} />
+              ? <Route exact path='/heroes' render={() => <Heroes showUniqueHero={this.showUniqueHero} deleteHero={this.deleteHero} heroes={this.state.heroes} />} />
               : 'No heroes yet'
           }
+          <Route exact path='/heroes/:heroId' render={() => <HeroContainer loadHeroFromServer={this.loadHeroFromServer} hero={this.state.hero} />} />
           {
             this.state.villains
               ? <Route path='/villains' render={() => <Villains showUniqueVillain={this.showUniqueVillain} deleteVillain={this.deleteVillain} villains={this.state.villains} />} />

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const styles = {
   container: {
@@ -55,11 +56,12 @@ const styles = {
 
 const Hero = ({hero, deleteHero, showUniqueHero}) => {
   return (
-    <div style={styles.container}>
+    <div>
       <img src={hero.img} style={styles.image} />
       <p style={styles.caption} >{hero.name}</p>
       <button onClick={() => deleteHero(hero)}>Delete Hero</button>
       <button onClick={() => showUniqueHero(hero)}>Show Additional Info</button>
+      <Link to={`/heroes/${hero._id}`}> View Hero </Link>
     </div>
   )
 }
