@@ -26,6 +26,8 @@ const Navigation = () =>
     <Link to='/' style={styles.linkItem} >Home</Link>
     <Link to='/heroes' style={styles.linkItem} >Heroes</Link>
     <Link to='/create-hero' style={styles.linkItem} >Create a New Hero</Link>
+    <Link to='/villains' style={styles.linkItem} >Villains</Link>
+    <Link to='/create-villain' style={styles.linkItem} >Create a New Villain</Link>
   </nav>
 
 export default Navigation

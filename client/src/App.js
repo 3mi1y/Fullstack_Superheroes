@@ -5,9 +5,12 @@ import {
 } from 'react-router-dom'
 import Home from './Home'
 import Heroes from './Heroes'
+import Villains from './Villains'
 import Navigation from './Navigation'
 import Header from './Header'
 import CreateHeroContainer from './CreateHeroContainer'
+import CreateVillainContainer from './CreateVillainContainer'
+// import HeroesContainer from './HeroesContainer'
 import $ from 'jquery'
 
 const styles = {
@@ -21,15 +24,12 @@ const styles = {
 class App extends Component {
   state = {
     heroes: undefined,
-    name: undefined,
-    superpower: undefined,
-    universe: undefined,
-    img: undefined,
-    nemesis: undefined
+    villains: undefined
   }
 
   componentDidMount () {
     this.loadSuperHeroesFromServer()
+    this.loadVillainsFromServer()
   }
 
   loadSuperHeroesFromServer = () => {
@@ -41,6 +41,48 @@ class App extends Component {
     })
   }
 
+  loadVillainsFromServer = () => {
+    $.ajax({
+      url: '/api/villains',
+      method: 'GET'
+    }).done(response => {
+      this.setState({ villains: response.data })
+    })
+  }
+
+  deleteHero = (hero) => {
+    console.log(`Post id ${hero._id}`)
+    $.ajax({
+      url: `/api/superheroes/${hero._id}`,
+      method: 'DELETE'
+    }).done(response => {
+      console.log(response)
+      this.loadSuperHeroesFromServer()
+    })
+  }
+
+  deleteVillain = (villain) => {
+    console.log(`Post id ${villain._id}`)
+    $.ajax({
+      url: `/api/villains/${villain._id}`,
+      method: 'DELETE'
+    }).done(response => {
+      console.log(response)
+      this.loadVillainsFromServer()
+    })
+  }
+
+  showUniqueHero = (hero) => {
+    $.ajax({
+      url: `/api/superheroes/${hero._id}`,
+      method: 'GET'
+    }).done(response => {
+      console.log(response)
+      alert(`${response.data.name}`)
+      // this.props.history.push(`/heroes/${hero._id}`)
+    })
+  }
+
   render () {
     return (
       <Router>
@@ -49,10 +91,16 @@ class App extends Component {
           <Header />
           <Route exact path='/' component={Home} />
           <Route path='/create-hero' render={() => <CreateHeroContainer />} />
+          <Route path='/create-villain' render={() => <CreateVillainContainer />} />
           {
             this.state.heroes
-              ? <Route path='/heroes' render={() => <Heroes heroes={this.state.heroes} />} />
+              ? <Route path='/heroes' render={() => <Heroes showUniqueHero={this.showUniqueHero} deleteHero={this.deleteHero} heroes={this.state.heroes} />} />
               : 'No heroes yet'
+          }
+          {
+            this.state.villains
+              ? <Route path='/villains' render={() => <Villains deleteVillain={this.deleteVillain} villains={this.state.villains} />} />
+              : 'No villains yet'
           }
         </div>
       </Router>

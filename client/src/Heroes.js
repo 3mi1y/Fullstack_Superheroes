@@ -11,11 +11,11 @@ const styles = {
   }
 }
 
-const Heroes = ({heroes}) => 
+const Heroes = ({heroes, deleteHero, showUniqueHero}) => 
   <div style={styles.container}>
     {
       heroes.map(hero => {
-        return <Hero hero={hero} />
+        return <Hero hero={hero} deleteHero={deleteHero} showUniqueHero={showUniqueHero} />
       })
     }
   </div>
