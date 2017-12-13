@@ -37,14 +37,14 @@ class CreateHeroContainer extends Component {
   state = {
     name: undefined,
     universe: undefined,
-    nemasis: undefined,
+    nemesis: undefined,
     image: undefined,
     superPower: undefined
   }
 
   onNameChange = (e) => this.setState({ name: e.target.value })
   onUniverseChange = (e) => this.setState({ universe: e.target.value })
-  onNemesisChange = (e) => this.setState({ nemasis: e.target.value })
+  onNemesisChange = (e) => this.setState({ nemesis: e.target.value })
   onImageChange = (e) => this.setState({ image: e.target.value })
   onSuperPowerChange = (e) => this.setState({ superPower: e.target.value })
 
@@ -54,7 +54,7 @@ class CreateHeroContainer extends Component {
       name: this.state.name,
       superPower: this.state.superPower,
       universe: this.state.universe,
-      nemasis: this.state.nemasis,
+      nemesis: this.state.nemesis,
       img: this.state.image
     }
     $.ajax({

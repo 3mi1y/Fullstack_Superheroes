@@ -37,14 +37,14 @@ class CreateVillainContainer extends Component {
   state = {
     name: undefined,
     universe: undefined,
-    nemasis: undefined,
+    nemesis: undefined,
     image: undefined,
     superPower: undefined
   }
 
   onNameChange = (e) => this.setState({ name: e.target.value })
   onUniverseChange = (e) => this.setState({ universe: e.target.value })
-  onNemesisChange = (e) => this.setState({ nemasis: e.target.value })
+  onNemesisChange = (e) => this.setState({ nemesis: e.target.value })
   onImageChange = (e) => this.setState({ image: e.target.value })
   onSuperPowerChange = (e) => this.setState({ superPower: e.target.value })
 
@@ -54,7 +54,7 @@ class CreateVillainContainer extends Component {
       name: this.state.name,
       superPower: this.state.superPower,
       universe: this.state.universe,
-      nemasis: this.state.nemasis,
+      nemesis: this.state.nemesis,
       img: this.state.image
     }
 
@@ -74,7 +74,7 @@ class CreateVillainContainer extends Component {
         <input type='text' style={styles.inputElement} placeholder='Whats your Villains name?' onChange={this.onNameChange} />
         <input type='text' style={styles.inputElement} placeholder='Whats your Villains power?' onChange={this.onSuperPowerChange} />
         <input type='text' style={styles.inputElement} placeholder='What Universe is your Villain from?' onChange={this.onUniverseChange} />
-        <input type='text' style={styles.inputElement} placeholder='Who is your Villains nemasis' onChange={this.onNemesisChange} />
+        <input type='text' style={styles.inputElement} placeholder='Who is your Villains nemesis' onChange={this.onNemesisChange} />
         <input type='text' style={styles.inputElement} placeholder='Image URL for your villain???' onChange={this.onImageChange} />
         <button onClick={this.addVillain} style={styles.button}>Add Villain</button>
       </form>

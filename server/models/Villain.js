@@ -6,7 +6,7 @@ const VillainSchema = new Schema({
   universe: String,
   superPower: String,
   img: String,
-  nemasis: String
+  nemesis: String
 })
 
 module.exports = mongoose.model('Villain', VillainSchema)

@@ -3,15 +3,15 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
-import Home from './Home'
-import Heroes from './Heroes'
-import Villains from './Villains'
-import Navigation from './Navigation'
-import Header from './Header'
-import CreateHeroContainer from './CreateHeroContainer'
-import CreateVillainContainer from './CreateVillainContainer'
-// import HeroesContainer from './HeroesContainer'
 import $ from 'jquery'
+
+import Home from './Home'
+import CreateHeroContainer from './Heroes/CreateHeroContainer'
+import CreateVillainContainer from './Villains/CreateVillainContainer'
+import Heroes from './Heroes/Heroes'
+import Villains from './Villains/Villains'
+import Navigation from './Components/Navigation'
+import Header from './Components/Header'
 
 const styles = {
   container: {
@@ -78,11 +78,22 @@ class App extends Component {
       method: 'GET'
     }).done(response => {
       console.log(response)
-      alert(`${response.data.name}`)
-      // this.props.history.push(`/heroes/${hero._id}`)
+      const hero = response.data
+      alert(`${hero.name}, Superpower: ${hero.superPower}, Nememsis: ${hero.nemesis}`)
     })
   }
 
+  showUniqueVillain = (villain) => {
+    $.ajax({
+      url: `/api/villains/${villain._id}`,
+      method: 'GET'
+    }).done(response => {
+      console.log(response)
+      const villain = response.data
+      alert(`${villain.name}, Nemesis: ${villain.nemesis}`)
+    })
+  }
+  
   render () {
     return (
       <Router>
@@ -99,7 +110,7 @@ class App extends Component {
           }
           {
             this.state.villains
-              ? <Route path='/villains' render={() => <Villains deleteVillain={this.deleteVillain} villains={this.state.villains} />} />
+              ? <Route path='/villains' render={() => <Villains showUniqueVillain={this.showUniqueVillain} deleteVillain={this.deleteVillain} villains={this.state.villains} />} />
               : 'No villains yet'
           }
         </div>

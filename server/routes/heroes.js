@@ -15,6 +15,7 @@ Router.route('/api/superheroes')
 
 Router.route('/api/superheroes')
   .post((req, res) => {
+    console.log(req.body)
     const {name, universe, superPower, img, nemesis} = req.body
     const newSuperHero = {
       name,
@@ -23,6 +24,7 @@ Router.route('/api/superheroes')
       nemesis,
       img
     }
+    console.log(newSuperHero)
 
     SuperHero(newSuperHero).save((err, hero) => {
       if (err) {

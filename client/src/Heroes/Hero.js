@@ -53,14 +53,15 @@ const styles = {
   }
 }
 
-const Villain = ({villain, deleteVillain}) => {
+const Hero = ({hero, deleteHero, showUniqueHero}) => {
   return (
     <div style={styles.container}>
-      <img src={villain.img} style={styles.image} />
-      <p style={styles.caption} >{villain.name}</p>
-      <button onClick={() => deleteVillain(villain)}>Delete Villain</button>
+      <img src={hero.img} style={styles.image} />
+      <p style={styles.caption} >{hero.name}</p>
+      <button onClick={() => deleteHero(hero)}>Delete Hero</button>
+      <button onClick={() => showUniqueHero(hero)}>Show Additional Info</button>
     </div>
   )
 }
 
-export default Villain
+export default Hero
