@@ -59,4 +59,29 @@ Router.route('/api/superheroes/:heroId')
     })
   })
 
+Router.route('/api/superheroes/:heroId')
+  .put((req, res) => {
+    const heroId = req.params.heroId
+    SuperHero.findById({ _id: heroId }, (err, hero) => {
+      if (err) {
+        res.json({ msg: err })
+      } else {
+        hero.name = req.body.name ? req.body.name : hero.name
+        hero.img = req.body.img ? req.body.img : hero.img
+        hero.superPower = req.body.superPower ? req.body.superPower : hero.superPower
+        hero.nemesis = req.body.nemesis ? req.body.nemesis : hero.nemesis
+        hero.universe = req.body.universe ? req.body.universe : hero.universe
+
+        hero.save((err, updatedHero) => {
+          if (err) {
+            console.log('ERROR SAVING HERO', err)
+            res.json({error: err})
+          } else {
+            res.json({ msg: 'SUCCESS', data: updatedHero })
+          }
+        })
+      }
+    })
+  })
+
 module.exports = Router

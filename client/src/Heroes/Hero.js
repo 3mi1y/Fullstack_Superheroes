@@ -61,7 +61,8 @@ const Hero = ({hero, deleteHero, showUniqueHero}) => {
       <p style={styles.caption} >{hero.name}</p>
       <button onClick={() => deleteHero(hero)}>Delete Hero</button>
       <button onClick={() => showUniqueHero(hero)}>Show Additional Info</button>
-      <Link to={`/heroes/${hero._id}`}> View Hero </Link>
+      <Link to={`/hero/${hero._id}`}> View Hero </Link>
+      <Link to={`/edit-hero/${hero._id}`}> Edit Hero </Link>
     </div>
   )
 }

@@ -8,6 +8,7 @@ import $ from 'jquery'
 import Home from './Home'
 import CreateHeroContainer from './Heroes/CreateHeroContainer'
 import HeroContainer from './Heroes/HeroContainer'
+import EditHeroContainer from './Heroes/EditHeroContainer'
 import CreateVillainContainer from './Villains/CreateVillainContainer'
 import Heroes from './Heroes/Heroes'
 import Villains from './Villains/Villains'
@@ -110,7 +111,10 @@ class App extends Component {
               ? <Route exact path='/heroes' render={() => <Heroes showUniqueHero={this.showUniqueHero} deleteHero={this.deleteHero} heroes={this.state.heroes} />} />
               : 'No heroes yet'
           }
-          <Route exact path='/heroes/:heroId' render={() => <HeroContainer loadHeroFromServer={this.loadHeroFromServer} hero={this.state.hero} />} />
+          <Route exact path='/hero/:heroId' render={() => <HeroContainer loadHeroFromServer={this.loadHeroFromServer} />} />
+
+          <Route exact path='/edit-hero/:heroId' render={() => <EditHeroContainer loadSuperHeroesFromServer={this.loadSuperHeroesFromServer} />} />
+
           {
             this.state.villains
               ? <Route path='/villains' render={() => <Villains showUniqueVillain={this.showUniqueVillain} deleteVillain={this.deleteVillain} villains={this.state.villains} />} />

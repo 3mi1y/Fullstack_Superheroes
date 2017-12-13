@@ -15,15 +15,13 @@ const Heroes = ({heroes, deleteHero, showUniqueHero}) =>
   <div style={styles.container}>
     {
       heroes.map(hero => {
-        return <Hero 
-          hero={hero} 
-          deleteHero={deleteHero} 
+        return <Hero
+          hero={hero}
+          deleteHero={deleteHero}
           showUniqueHero={showUniqueHero}
         />
       })
     }
   </div>
 
-
-
-export default Heroes 
+export default Heroes
